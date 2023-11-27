@@ -25,23 +25,23 @@ def load_numbers(): #Считывание всех номеров из xlsx
 
 def click_new_chat():# Нажатие на кнопку новый чат
     browser.find_element(By.XPATH, btn_new_chat).click()
-    time.sleep(1)
+    time.sleep(7)
 
 def entering_number(number):# Вставляем номер телефона
     browser.find_element(By.XPATH, input_number).send_keys(number)
-    time.sleep(2)
+    time.sleep(6)
 
 def click_user_account():# Выбираем аккаунт "кому отправить"
     browser.find_element(By.XPATH, btn_user_account).click()
-    time.sleep(2)
+    time.sleep(4)
 
 def entering_message(message): # Пишем текст
     browser.find_element(By.XPATH, input_message).send_keys(message)
-    time.sleep(3)
+    time.sleep(8)
 
 def click_send_message(): # Нажатие на кнопку отправить
     browser.find_element(By.XPATH, btn_send_message).click()
-    time.sleep(2)
+    time.sleep(5)
 
 def click_back(): # Вернуться назад если пользователь не найден
     browser.find_element(By.XPATH, btn_back).click()
