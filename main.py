@@ -17,11 +17,7 @@ btn_send_message = '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/
 btn_back = '//*[@id="app"]/div/div[2]/div[2]/div[1]/span/div/span/div/div[1]/div[2]/button'
 
 def load_numbers(): #Считывание всех номеров из xlsx
-    list_number = []
-    for i in range(1, worksheet.max_row):
-        for col in worksheet.iter_cols(1, worksheet.max_column):
-            if col[i].value:
-                list_number.append(col[i].value)
+    list_number = [col[i].value for i in range(1, worksheet.max_row) for col in worksheet.iter_cols(1, worksheet.max_column) if col[i].value]
     return list_number
 
 def click_new_chat():# Нажатие на кнопку новый чат
