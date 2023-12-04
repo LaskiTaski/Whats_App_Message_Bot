@@ -1,9 +1,20 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from time import sleep
 from random import randint
 import openpyxl
 import json
-import time
+
+
+
+options = webdriver.ChromeOptions()
+options.add_argument("--start-maximized")
+options.add_argument('user-data-dir=C:\\Users') # УКАЖИТЕ ПУТЬ ГДЕ ЛЕЖИТ ВАШ ФАЙЛ. Советую создать отдельную папку.
+
+
 
 wookbook = openpyxl.load_workbook("number_list.xlsx")
 worksheet = wookbook.active
@@ -22,36 +33,36 @@ def load_numbers(): #Считывание всех номеров из xlsx
 
 def click_new_chat():# Нажатие на кнопку новый чат
     browser.find_element(By.XPATH, btn_new_chat).click()
-    time.sleep(randint(6, 11))
+    sleep(randint(6, 11))
 
 def entering_number(number):# Вставляем номер телефона
     browser.find_element(By.XPATH, input_number).send_keys(number)
-    time.sleep(randint(6, 11))
+    sleep(randint(6, 11))
 
 def click_user_account():# Выбираем аккаунт "кому отправить"
     browser.find_element(By.XPATH, btn_user_account).click()
-    time.sleep(randint(6, 11))
+    sleep(randint(6, 11))
 
 def entering_message(message): # Пишем текст
     browser.find_element(By.XPATH, input_message).send_keys(message)
-    time.sleep(randint(6, 11))
+    sleep(randint(6, 11))
 
 def click_send_message(): # Нажатие на кнопку отправить
     browser.find_element(By.XPATH, btn_send_message).click()
-    time.sleep(randint(6, 11))
+    sleep(randint(6, 11))
 
 def click_back(): # Вернуться назад если пользователь не найден
     browser.find_element(By.XPATH, btn_back).click()
-    time.sleep(2)
+    sleep(2)
 
 result_json = {}
 if __name__ == '__main__':
     list_number = load_numbers()
     message = 'Ваше сообщение'
 
-    with webdriver.Chrome() as browser:
+    with webdriver.Chrome(options=options) as browser:
         browser.get('https://web.whatsapp.com/')
-        time.sleep(20)
+        sleep(20)
         for number in list_number:
             click_new_chat()
             entering_number(number)
@@ -70,4 +81,3 @@ if __name__ == '__main__':
                 with open('res.json', 'a', encoding='utf-8') as file:
                     json.dump(result_json, file, indent=4, ensure_ascii=False)
                     result_json = {}
-
