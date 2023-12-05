@@ -12,7 +12,7 @@ import json
 
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
-options.add_argument('user-data-dir=C:\\Users\\Tim\\AppData\\Local\\Google\\Chrome\\User Data') # УКАЖИТЕ ПУТЬ ГДЕ ЛЕЖИТ ВАШ ФАЙЛ. Советую создать отдельную папку.
+options.add_argument('user-data-dir=C:\\Chrome\\User Data') # УКАЖИТЕ ПУТЬ ГДЕ ЛЕЖИТ ВАШ ФАЙЛ. Советую создать отдельную папку.
 
 
 
