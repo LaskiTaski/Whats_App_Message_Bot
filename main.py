@@ -8,7 +8,7 @@ import json
 
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
-options.add_argument('user-data-dir=C:Google\\Chrome\\User Data') # УКАЖИТЕ ПУТЬ ГДЕ ЛЕЖИТ ВАШ ФАЙЛ. Советую создать отдельную папку.
+options.add_argument('user-data-dir=C:\\Google\\Chrome\\User Data') # УКАЖИТЕ ПУТЬ ГДЕ ЛЕЖИТ ВАШ ФАЙЛ. Советую создать отдельную папку.
 
 workbook = openpyxl.load_workbook("number_list.xlsx")
 worksheet = workbook.active
@@ -43,6 +43,7 @@ def click_back(): # Вернуться назад если пользовате�
     sleep(2)
 
 result_json = {}
+
 if __name__ == '__main__':
     list_number = load_numbers()
     message = 'Ваше сообщение'
@@ -53,6 +54,7 @@ if __name__ == '__main__':
         for number in list_number:
             click_new_chat()
             entering_number(number)
+
             try:
                 click_user_account()
                 entering_message(message)
@@ -64,6 +66,7 @@ if __name__ == '__main__':
                 click_back()
                 print(f'Пользователь {number} Не найден\n')
                 result_json[number] = '-------------------FALSE-------------------------'
+
             finally:
                 with open('res.json', 'a', encoding='utf-8') as file:
                     json.dump(result_json, file, indent=4, ensure_ascii=False)
